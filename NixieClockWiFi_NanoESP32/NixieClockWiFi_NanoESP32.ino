@@ -122,8 +122,12 @@ void setup() {
 }
 
 void loop() {
-  ntp.update();
+  if (WiFi.status() != WL_CONNECTED)
+  {
+    WiFi.reconnect();
+  }
 
+  ntp.update();
 
   hours = ntp.hours();
   minutes = ntp.minutes();
